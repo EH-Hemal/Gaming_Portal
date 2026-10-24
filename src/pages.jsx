@@ -1,6 +1,6 @@
 import { useState,useMemo } from 'react';
 import { Link,useParams,useSearchParams } from 'react-router-dom';
-import { ArrowRight,Play,Flame,Sparkles,Zap,Heart,History,Search,ArrowUpRight,Crown,Gamepad2,Check,Send,Compass,ShieldCheck } from 'lucide-react';
+import { ArrowRight,Play,Flame,Sparkles,Zap,Heart,History,Search,ArrowUpRight,Crown,Gamepad2,Check,Send,Compass,ShieldCheck } from "./icons.js";
 import { useStore,api } from './context.jsx';
 import { GameGrid,GameCard,SectionTitle,Ad,Loading,Empty,ErrorState,CategoryIcon } from './components.jsx';
 

@@ -1,6 +1,6 @@
 import { useState,useEffect,useRef,useCallback,Suspense,lazy } from 'react';
 import { Link,useParams } from 'react-router-dom';
-import { ArrowLeft,Play,RotateCcw,Maximize,Minimize,Heart,Gamepad2,ExternalLink,Info,ShieldCheck,Trophy } from 'lucide-react';
+import { ArrowLeft,Play,RotateCcw,Maximize,Minimize,Heart,Gamepad2,ExternalLink,Info,ShieldCheck,Trophy } from "./icons.js";
 import { useStore,useSaved,api } from './context.jsx';
 import { Art,Ad,GameGrid,SectionTitle,Empty,Loading,ErrorState } from './components.jsx';
 const GameEngine=lazy(()=>import('./games/Engines.jsx'));

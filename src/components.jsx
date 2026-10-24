@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Gamepad2,Puzzle,Swords,Flag,Joystick,Compass,Brain,Heart,ArrowUpRight,ArrowRight,Play,Flame,Sparkles,AlertCircle,Zap } from 'lucide-react';
+import { Gamepad2,Puzzle,Swords,Flag,Joystick,Compass,Brain,Heart,ArrowUpRight,ArrowRight,Play,Flame,Sparkles,AlertCircle,Zap } from "./icons.js";
 import { useStore } from './context.jsx';
 export const categoryIcons={Puzzle,Swords,Flag,Joystick,Compass,Brain};
 export function CategoryIcon({name,...props}) {const Icon=categoryIcons[name]||Gamepad2;return <Icon {...props}/>;}

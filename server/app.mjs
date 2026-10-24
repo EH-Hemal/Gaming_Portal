@@ -50,7 +50,7 @@ export function createApp({databasePath,production=process.env.NODE_ENV==='produ
     if(!session) return res.status(401).json({error:'Please sign in to continue.'});
     if(!['GET','HEAD'].includes(req.method)) {
       const header=String(req.headers['x-csrf-token']||'');
-      if(header.length!==session.csrf.length || !timingSafeEqual(Buffer.from(header),Buffer.from(session.csrf))) return res.status(403).json({error:'Session verification failed. Refresh and try again.'});
+      if(!/^[a-f0-9]{48}$/.test(header) || !timingSafeEqual(Buffer.from(header),Buffer.from(session.csrf))) return res.status(403).json({error:'Session verification failed. Refresh and try again.'});
     }
     req.session=session; next();
   }
@@ -93,6 +93,10 @@ export function createApp({databasePath,production=process.env.NODE_ENV==='produ
   app.use('/games',express.static(resolve('public/games'),{dotfiles:'deny',setHeaders:(res,file)=>{
     if(file.endsWith('.html')) res.set('Content-Security-Policy',"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'none'; frame-ancestors 'self'");
   }}));
+  app.use((req,res,next)=>{
+    if(/^\/games\/.+\.html$/.test(req.path)) return res.status(404).type('html').send('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Game unavailable</title><body style="background:#101629;color:#f7f8ff;font:16px system-ui;padding:30px"><h1>This local game is unavailable.</h1><p>The administrator needs to install the licensed game files at the configured path.</p></body></html>');
+    next();
+  });
   if(existsSync(resolve('dist/index.html'))) {
     app.use(express.static(resolve('dist'),{maxAge:production?'1h':0}));
     app.get('/{*path}',(req,res)=>res.sendFile(join(resolve('dist'),'index.html')));

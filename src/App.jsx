@@ -1,6 +1,6 @@
 import { useEffect,useState } from 'react';
 import { Routes,Route,Link,NavLink,useLocation,useNavigate } from 'react-router-dom';
-import { Home,Flame,Sparkles,Heart,History,Search,Sun,Moon,Menu,X,ArrowUpRight,Gamepad2,Grid2X2,Zap,ChevronRight,ShieldCheck } from 'lucide-react';
+import { Home,Flame,Sparkles,Heart,History,Search,Sun,Moon,Menu,X,ArrowUpRight,Gamepad2,Grid2X2,Zap,ChevronRight,ShieldCheck } from "./icons.js";
 import { StoreProvider,useStore } from './context.jsx';
 import { Logo,CategoryIcon } from './components.jsx';
 import { HomePage,LibraryPage,InfoPage,ContactPage,NotFound } from './pages.jsx';

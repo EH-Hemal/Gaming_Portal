@@ -1,5 +1,5 @@
 import { useState,useRef,useEffect,useCallback } from 'react';
-import { ArrowUp,ArrowDown,ArrowLeft,ArrowRight,Flag,Zap,Star,Diamond,Moon,Sun,Heart,Flower2,Orbit,Flame } from 'lucide-react';
+import { ArrowUp,ArrowDown,ArrowLeft,ArrowRight,Flag,Zap,Star,Diamond,Moon,Sun,Heart,Flower2,Orbit,Flame } from "../icons.js";
 import { slide2048,addTile,canMove2048,winner,computerMove,shuffleSliding,slidingNeighbours } from './logic.mjs';
 
 function useKeys(callback) {const ref=useRef();const latest=useRef(callback);latest.current=callback;useEffect(()=>{ref.current?.focus({preventScroll:true});},[]);return {ref,tabIndex:0,onKeyDown:e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' ','w','a','s','d','W','A','S','D'].includes(e.key)){e.preventDefault();latest.current(e.key.toLowerCase());}}};}
