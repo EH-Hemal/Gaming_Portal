@@ -1,0 +1,10 @@
+import 'dotenv/config';
+import { randomBytes } from 'node:crypto';
+import { openDatabase,configureAdmin } from '../server/db.mjs';
+const username=process.env.ADMIN_USERNAME||'admin';
+const generated=!process.env.ADMIN_PASSWORD;
+const password=process.env.ADMIN_PASSWORD||randomBytes(18).toString('base64url');
+const db=openDatabase();configureAdmin(db,username,password);db.close();
+console.log(`Admin account ready. Username: ${username}`);
+if(generated) console.log(`Generated password (save this now): ${password}`);
+else console.log('Password set from your local .env. Existing sessions revoked.');
